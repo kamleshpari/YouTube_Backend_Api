@@ -6,7 +6,6 @@ require('dotenv').config();
 const User = require('../models/User');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const { subscribe } = require('../app');
 const checkAuth = require('../middleware/checkAuth');
 
 cloudinary.config({
