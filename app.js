@@ -18,7 +18,7 @@ const connectWithDatabase=async()=>{
     }
 }
 connectWithDatabase();
-app.use(core())
+app.use(cors())
 //app.use(express.json());
 app.use(bodyParser.json())
 
