@@ -19,7 +19,13 @@ Router.get('/own-video', checkAuth, async (req, res) => {
         const token = req.headers.authorization.split(" ")[1];
         const user = await jwt.verify(token, process.env.JWT_SECRET_KEY);
         console.log(user);
+        const videos=await Video.find({ user_id: user._id }).populate('user_id', 'channelName logoUrl ')
+        res.status(200).json({
+            message: 'Videos fetched successfully',
+            videos: videos
+        });
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ message: 'Internal Server Error' });
         
     }
