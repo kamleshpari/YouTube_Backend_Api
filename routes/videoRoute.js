@@ -12,8 +12,20 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
+//get all videos
+Router.get('/own-video', checkAuth, async (req, res) => {
+    try {
+       
+        const token = req.headers.authorization.split(" ")[1];
+        const user = await jwt.verify(token, process.env.JWT_SECRET_KEY);
+        console.log(user);
+    } catch (error) {
+        return res.status(500).json({ message: 'Internal Server Error' });
+        
+    }
+})
 
-
+//api upload video
 Router.post('/upload', checkAuth, async (req, res) => {
     // Handle video upload logic here
     try {
